@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 
-public class Balloon : GameUnit
+public class Balloon : MonoBehaviour
 {
     [Header(" Components ")]
     [SerializeField] private Renderer renderer;
@@ -11,23 +11,28 @@ public class Balloon : GameUnit
     [SerializeField] private TextMeshPro multiplierText;
     [SerializeField] private GameEvent popEvent;
 
-    public override void OnDespawn()
+    // Start is called before the first frame update
+    void Start()
     {
-        SimplePool.Despawn(this);
+        
     }
-    public override void OnInit()
-    {
 
-    }
-    public void Configure(float multiplier)
+    // Update is called once per frame
+    void Update()
     {
-        multiplierText.text = "-" + multiplier.ToString();
+        
+    }
+
+    public void Configure(float multiplier, Color color)
+    {
+        multiplierText.text = "x" + multiplier.ToString("F2");
+        renderer.material.SetColor("_BaseColor", color);
     }
 
     public void Pop()
     {
         popEvent.RaiseEvent(new EnemyTouchedEvent(transform.position));
-        Destroy(gameObject);
+
         renderer.enabled = false;
         multiplierText.enabled = false;
         collider.enabled = false;

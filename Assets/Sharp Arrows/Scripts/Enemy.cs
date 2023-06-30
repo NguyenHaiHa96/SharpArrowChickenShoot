@@ -27,6 +27,7 @@ public class Enemy : MonoBehaviour
     {
         collider.enabled = false;
         animator.Play("Die");
+        this.chickenAnimator.Play("Die");
         UIManager.AddCoins(50);
         ShowArrows();
     }

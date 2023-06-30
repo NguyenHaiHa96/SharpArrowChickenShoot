@@ -13,11 +13,10 @@ public class PlayerDetection : MonoBehaviour
     [SerializeField] private LayerMask enemiesLayer;
     [SerializeField] private LayerMask balloonsLayer;
     private bool canDetectDoors;
-    int countBalloons;
+
     // Start is called before the first frame update
     void Start()
     {
-        countBalloons = 0;
         canDetectDoors = true;
     }
 
@@ -46,24 +45,16 @@ public class PlayerDetection : MonoBehaviour
     {
         Collider[] detectedEnemies = Physics.OverlapSphere(transform.position, arrowPlacer.GetPlayerColliderRadius(), enemiesLayer);
         if (detectedEnemies.Length <= 0) return;
+
         arrowPlacer.EnemiesTouchedCallback(detectedEnemies);
     }
 
     private void DetectBalloons()
     {
-        
         Collider[] detectedBalloons = Physics.OverlapSphere(transform.position, arrowPlacer.GetPlayerColliderRadius(), balloonsLayer);
         if (detectedBalloons.Length <= 0) return;
-        countBalloons++;
-        //if(arrowPlacer.arrowsParent.childCount <= Mathf.Pow(2,countBalloons)) {
-        //    arrowPlacer.SetGameover();
-        //    for(int i =0; i < arrowPlacer.arrowsParent.childCount; i ++)
-        //    {
-        //        Destroy(arrowPlacer.arrowsParent.GetChild(i).gameObject);
-        //    }
-        //    return;
-        //}
-        arrowPlacer.BalloonTouchedCallback(detectedBalloons,countBalloons);
+
+        arrowPlacer.BalloonTouchedCallback(detectedBalloons);
     }
 
     private void DoorTouchedCallback(Door door)

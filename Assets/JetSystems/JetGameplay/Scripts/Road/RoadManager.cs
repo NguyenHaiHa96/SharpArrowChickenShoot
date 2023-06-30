@@ -50,7 +50,6 @@ namespace JetSystems
 
         private void IncreaseLevelIndex(int useless)
         {
-            Debug.Log("Level complete");
             level++;
             PlayerPrefs.SetInt("LEVEL", level);
         }

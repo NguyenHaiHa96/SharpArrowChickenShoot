@@ -11,7 +11,6 @@ namespace JetSystems
         public RectTransform levelCompleteTextContainer;
         public RectTransform starsContainer;
         public RectTransform nextButton;
-        public IEnumerator IeLevelCompleteAnimation;
 
         // Start is called before the first frame update
         void Start()
@@ -24,17 +23,8 @@ namespace JetSystems
             UIManager.onLevelCompleteSet -= StartLevelCompleteAnimation;
         }
 
-        // Update is called once per frame
-        void Update()
-        {
-
-        }
-
         public void StartLevelCompleteAnimation(int starsCount)
         {
-
-            IeLevelCompleteAnimation = LevelCompleteAnimationCoroutine(starsCount);
-
             // Start the level complete animation coroutine
            StartCoroutine(LevelCompleteAnimationCoroutine(starsCount));
         }

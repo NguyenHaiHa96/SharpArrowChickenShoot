@@ -173,7 +173,6 @@ public class PlayerController : MonoBehaviour
         //playerAnimator.Die();
         splineFollower.follow = false;
 
-        playerState = PlayerState.Dead;
         UIManager.setGameoverDelegate?.Invoke();
     }
 

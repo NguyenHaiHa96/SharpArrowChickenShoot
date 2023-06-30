@@ -29,11 +29,15 @@ namespace JetSystems
         public delegate void OnMenuSet();
         public static OnMenuSet onMenuSet;
 
+
+
         public delegate void SetGameDelegate();
         public static SetGameDelegate setGameDelegate;
 
         public delegate void OnGameSet();
         public static OnGameSet onGameSet;
+
+
 
         public delegate void SetLevelCompleteDelegate(int starsCount = 3);
         public static SetLevelCompleteDelegate setLevelCompleteDelegate;
@@ -41,11 +45,14 @@ namespace JetSystems
         public delegate void OnLevelCompleteSet(int starsCount = 3);
         public static OnLevelCompleteSet onLevelCompleteSet;
 
+
+
         public delegate void SetGameoverDelegate();
         public static SetGameoverDelegate setGameoverDelegate;
 
         public delegate void OnGameoverSet();
         public static OnGameoverSet onGameoverSet;
+
 
         public delegate void SetSettingsDelegate();
         public static SetSettingsDelegate setSettingsDelegate;
@@ -53,17 +60,21 @@ namespace JetSystems
         public delegate void OnSettingsSet();
         public static OnSettingsSet onSettingsSet;
 
+
+
         public delegate void UpdateProgressBarDelegate(float value);
         public static UpdateProgressBarDelegate updateProgressBarDelegate;
+
+
 
         public delegate void OnNextLevelButtonPressed();
         public static OnNextLevelButtonPressed onNextLevelButtonPressed;
 
         public delegate void OnRetryButtonPressed();
         public static OnRetryButtonPressed onRetryButtonPressed;
+
         #endregion
 
-        private bool isIvokedLevelComplete;
 
         // Canvas Groups
         public CanvasGroup MENU;
@@ -159,7 +170,6 @@ namespace JetSystems
 
         public void SetGame()
         {
-            Debug.Log("Set game");
             gameState = GameState.GAME;
             Utils.HideAllCGs(canvases, GAME);
 
@@ -171,7 +181,6 @@ namespace JetSystems
 
             // Update the level text
             levelText.text = "Level " + (PlayerPrefsManager.GetLevel() + 1);
-            isIvokedLevelComplete = false;
         }
 
         public void SetLevelComplete(int starsCount = 3)
@@ -180,11 +189,7 @@ namespace JetSystems
             Utils.HideAllCGs(canvases, LEVELCOMPLETE);
 
             // Invoke the delegate
-            if (!isIvokedLevelComplete)
-            {
-                isIvokedLevelComplete = true;
-                onLevelCompleteSet?.Invoke(starsCount);
-            }
+            onLevelCompleteSet?.Invoke(starsCount);
         }
 
         public void SetGameover()

@@ -8,7 +8,7 @@ namespace JetSystems
     public static class PlayerPrefsManager
     {
         static string COINSKEY = "COINS";
-        static string ITEMUNLOCKEDKEY = "ITEMUNLOCKED_TEST1";
+        static string ITEMUNLOCKEDKEY = "ITEMUNLOCKED";
         static string SOUNDKEY = "SOUNDS";
         static string LEVELKEY = "LEVEL";
 

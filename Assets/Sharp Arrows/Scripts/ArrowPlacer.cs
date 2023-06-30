@@ -11,7 +11,7 @@ public class ArrowPlacer : MonoBehaviour
     [SerializeField] private TextMeshPro arrowCountText;
 
     [Header(" Settings ")]
-    public Transform arrowsParent;
+    [SerializeField] private Transform arrowsParent;
     [SerializeField] private Transform arrowPrefab;
 
     [Header(" Formation Settings ")]
@@ -34,10 +34,6 @@ public class ArrowPlacer : MonoBehaviour
     {
         FermatSpiralPlacement();
         UpdateArrowCount();
-        if (LevelManager.instance.levelInstance.chickenContainer.childCount <= 0)
-        {
-            SetLevelComplete();
-        }
     }
 
     public float GetPlayerColliderRadius()
@@ -84,17 +80,21 @@ public class ArrowPlacer : MonoBehaviour
         Taptic.Light();
     }
 
-    public void BalloonTouchedCallback(Collider[] touchedBalloons, int count) 
+    public void BalloonTouchedCallback(Collider[] touchedBalloons) 
     {
-        foreach (Collider balloonCollider in touchedBalloons)
+        foreach(Collider balloonCollider in touchedBalloons)
         {
-            int arrowsToRemove = (int)Mathf.Pow(2, count);
+            int arrowsToRemove = Mathf.Max(10, arrowsParent.childCount / 10);
+
             RemoveArrows(arrowsToRemove, true);
-            touchedBalloons[0].GetComponent<Balloon>().Pop();
-            Taptic.Light();
+            balloonCollider.GetComponent<Balloon>().Pop();
         }
-        
+
+        Taptic.Light();
+
     }
+
+
     private void RemoveArrows(int amount, bool poppingBalloons = false)
     {
         for (int i = 0; i < amount; i++)
@@ -108,7 +108,6 @@ public class ArrowPlacer : MonoBehaviour
                 }
                 else
                 {
-                    Debug.Log(1);
                     SetLevelComplete();
                     return;
                 }
@@ -122,12 +121,12 @@ public class ArrowPlacer : MonoBehaviour
 
     }
 
-    public void SetGameover()
+    private void SetGameover()
     {
         playerController.SetGameover();
     }
 
-    public void SetLevelComplete()
+    private void SetLevelComplete()
     {
         playerController.SetLevelComplete();
     }
@@ -177,7 +176,6 @@ public class ArrowPlacer : MonoBehaviour
             if (!playerController.IsPoppingBalloons())
                 SetGameover();
             else
-                Debug.Log(2);
                 SetLevelComplete();
         }
     }

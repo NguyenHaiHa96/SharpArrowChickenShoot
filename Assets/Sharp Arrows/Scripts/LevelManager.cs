@@ -13,12 +13,9 @@ public class LevelManager : MonoBehaviour
     [Header(" Settings ")]
     [SerializeField] private GameObject[] levelsPrefabs;
     int level;
-    public static LevelManager instance;
 
-    public Level levelInstance;
     private void Awake()
     {
-        instance = this;
         level = PlayerPrefs.GetInt("LEVEL");
 
         UIManager.onNextLevelButtonPressed += SpawnNextLevel;
@@ -37,18 +34,16 @@ public class LevelManager : MonoBehaviour
 
     // Update is called once per frame
     void Update()
-    { }
-        
-    public int Level
     {
-        get { return level; }
+        
     }
+
     private void SpawnLevel()
     {
         int correctedLevelIndex = level % levelsPrefabs.Length;
 
         transform.Clear();
-        levelInstance = Instantiate(levelsPrefabs[correctedLevelIndex], transform).GetComponent<Level>();
+        GameObject currentLevel = Instantiate(levelsPrefabs[correctedLevelIndex], transform);
 
         onLevelInstantiated?.Invoke();
 
