@@ -75,7 +75,7 @@ namespace JetSystems
             // Show Level Complete UI
             ShowLevelCompleteUI();
 
-            if(GUI.changed)
+            if (GUI.changed)
             {
                 UpdateOrientation();
                 EditorUtility.SetDirty(uiManager);
@@ -143,6 +143,7 @@ namespace JetSystems
             Utils.ShowSerializedField(serializedObject, "LEVELCOMPLETE", "Level Complete");
             Utils.ShowSerializedField(serializedObject, "GAMEOVER", "Gameover");
             Utils.ShowSerializedField(serializedObject, "SETTINGS", "Settings");
+            Utils.ShowSerializedField(serializedObject, "PAUSE", "Pause Game");
             Utils.ShowSerializedField(serializedObject, "shopManager", "Shop Manager");
 
         }
@@ -175,6 +176,11 @@ namespace JetSystems
         {
             Utils.CategoryHeader("Level Complete");
             Utils.ShowSerializedField(serializedObject, "levelCompleteCoinsText");
+        }
+        private void ShowPauseGameUI()
+        {
+            Utils.CategoryHeader("Pause Game");
+            Utils.ShowSerializedField(serializedObject, "Pause Game");
         }
     }
 }

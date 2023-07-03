@@ -90,13 +90,13 @@ Material:
     - _ZWrite: 1
     m_Colors:
     - _BaseColor: {r: 1, g: 1, b: 1, a: 1}
-    - _BotColor: {r: 1, g: 0.67048913, b: 0.5613208, a: 1}
+    - _BotColor: {r: 0.7294118, g: 0.89166003, b: 1, a: 1}
     - _Color: {r: 1, g: 1, b: 1, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _Offset: {r: 1, g: 0, b: 0, a: 0}
     - _SpecColor: {r: 0.19999996, g: 0.19999996, b: 0.19999996, a: 1}
     - _Tiling: {r: 10, g: 5, b: 0, a: 0}
-    - _TopColor: {r: 1, g: 0.98241556, b: 0.36470592, a: 1}
+    - _TopColor: {r: 1, g: 0.8045192, b: 0.36470592, a: 1}
   m_BuildTextureStacks: []
 --- !u!114 &3394787825789671286
 MonoBehaviour:

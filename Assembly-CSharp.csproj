@@ -221,6 +221,9 @@
     <Compile Include="Assets\Dreamteck\Utilities\TS_Mesh.cs" />
     <Compile Include="Assets\JetSystems\JetUI\LeanTween\Examples\Archived\TestingRigidbodyCS.cs" />
     <Compile Include="Assets\JetSystems\JetUI\LeanTween\Examples\Scripts\Following.cs" />
+    <Compile Include="Assets\sumPause\Scripts\SumPause.cs" />
+    <Compile Include="Assets\sumPause\SampleScene\PauseObjectExample.cs" />
+    <Compile Include="Assets\sumPause\SampleScene\PauseMenuExample.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="Assets\TextMesh Pro\Shaders\TMPro.cginc" />
@@ -237,6 +240,7 @@
     <None Include="Assets\Quick Coin\UI Controlled Coins\_UI Particles\UI Particle Multiply.shader" />
     <None Include="Assets\Quick Coin\UI Controlled Coins\_UI Particles\UI Particle Add.shader" />
     <None Include="Assets\Quick Coin\UI Controlled Coins\_UI Particles\UI Particle Premultiply Blend.shader" />
+    <None Include="Assets\sumPause\README.md.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface-Mobile.shader" />
     <None Include="Assets\FatMachines\TapticFeedback\Plugins\Android\AndroidManifest.xml" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Surface.shader" />

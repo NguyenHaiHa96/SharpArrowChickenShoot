@@ -11,7 +11,7 @@ namespace JetSystems
         public enum Orientation { Portrait, Landscape }
         public Orientation orientation;
 
-        public enum GameState { MENU, GAME, LEVELCOMPLETE, GAMEOVER, SETTINGS, SHOP }
+        public enum GameState { MENU, GAME, LEVELCOMPLETE, GAMEOVER, SETTINGS, SHOP , PAUSE}
         public static GameState gameState;
 
         #region Static Variables
@@ -57,6 +57,9 @@ namespace JetSystems
         public delegate void SetSettingsDelegate();
         public static SetSettingsDelegate setSettingsDelegate;
 
+        public delegate void SetPauseGame();
+        public static SetPauseGame setPauseGame;
+
         public delegate void OnSettingsSet();
         public static OnSettingsSet onSettingsSet;
 
@@ -82,6 +85,7 @@ namespace JetSystems
         public CanvasGroup LEVELCOMPLETE;
         public CanvasGroup GAMEOVER;
         public CanvasGroup SETTINGS;
+        public CanvasGroup PAUSE;
         public ShopManager shopManager;
         public CanvasGroup[] canvases;
 
@@ -113,7 +117,7 @@ namespace JetSystems
         void Start()
 		{
             // Store the canvases
-            canvases = new CanvasGroup[] { MENU, GAME, LEVELCOMPLETE, GAMEOVER, SETTINGS };
+            canvases = new CanvasGroup[] { MENU, GAME, LEVELCOMPLETE, GAMEOVER, SETTINGS , PAUSE};
 
             // Configure the delegates
             ConfigureDelegates();
@@ -130,7 +134,7 @@ namespace JetSystems
             setLevelCompleteDelegate += SetLevelComplete;
             setGameoverDelegate += SetGameover;
             setSettingsDelegate += SetSettings;
-
+            setPauseGame += SetPause;
             // Progress bar events
             updateProgressBarDelegate += UpdateProgressBar;
         }
@@ -143,6 +147,7 @@ namespace JetSystems
             setLevelCompleteDelegate -= SetLevelComplete;
             setGameoverDelegate -= SetGameover;
             setSettingsDelegate -= SetSettings;
+            setPauseGame -= SetPause;
 
             // Progress bar events
             updateProgressBarDelegate -= UpdateProgressBar;
@@ -221,7 +226,12 @@ namespace JetSystems
             // Hide all the other canvases
             Utils.HideAllCGs(canvases);
         }
-
+        public void SetPause()
+        {
+            gameState = GameState.PAUSE;
+            Time.timeScale = 0;
+            Utils.HideAllCGs(canvases,PAUSE);
+        }
 
         public void CloseShop()
         {
@@ -244,6 +254,7 @@ namespace JetSystems
 
         public void RetryButtonCallback()
         {
+            Time.timeScale = 1f;
             SetMenu();
 
             // Invoke the retry button delegate
@@ -256,12 +267,21 @@ namespace JetSystems
         {
             SetMenu();
         }
-
+        public void ContinueGame()
+        {
+            Time.timeScale = 1f;
+            SetGame();
+        }
+        public void GotoMainMenu()
+        {
+            Time.timeScale = 1f;
+            SetMenu();
+        }
         public void UpdateProgressBar(float value)
         {
             progressBar.value = value;
         }
-
+        
         private void UpdateCoins()
         {
             menuCoinsText.text = Utils.FormatAmountString(COINS);

@@ -126,7 +126,7 @@ namespace JetSystems
             }
             else if (amount >= 1000 && amount < 1000000)
             {
-                formattedAmount = (amount / 1000).ToString() + " " + amount.ToString().Substring(amount.ToString().Length - 3, 3);
+                formattedAmount = (amount / 1000).ToString() + amount.ToString().Substring(amount.ToString().Length - 3, 3);
             }
 
             return formattedAmount;
